@@ -1,0 +1,8 @@
+User-agent: Googlebot
+Allow: /index.html
+Disallow: /portfolio.html
+Disallow: /
+
+User-agent: *
+Disallow: /portfolio.html
+Disallow: /
