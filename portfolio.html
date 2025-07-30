@@ -27,6 +27,8 @@
       </div>
     </div>
   </nav>
+
+      
 <br>
   <!-- Portfolio Content -->
   <section class="py-5">
@@ -151,7 +153,53 @@
     </div>
   </footer>
 
+<!-- Modal for reCAPTCHA -->
+  <div class="modal fade" id="recaptchaModal" tabindex="-1" aria-labelledby="recaptchaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="recaptchaModalLabel">Verification Required</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p class="mb-3">Please verify you're not a bot to access the portfolio.</p>
+          <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+          <button class="btn btn-primary mt-3" id="verifyButton" style="display: none;">Verify and Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Scripts -->
+  <script src="js/config.js"></script> <!-- 首先加載 config.js -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const recaptchaModal = new bootstrap.Modal(document.getElementById('recaptchaModal'));
+      recaptchaModal.show(); // 自動顯示模態框
+
+      const portfolioContent = document.getElementById('portfolio-content');
+
+      // Render reCAPTCHA using config.js
+      grecaptcha.render('g-recaptcha', {
+        'sitekey': RECAPTCHA_SITE_KEY,
+        'callback': function(token) {
+          if (token) {
+            recaptchaModal.hide(); // 關閉模態框
+            portfolioContent.style.display = 'block';
+          } else {
+            alert('Verification failed. Please try again.');
+          }
+        },
+        'expired-callback': function() {
+          alert('Verification expired. Please try again.');
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>
