@@ -163,14 +163,14 @@
         </div>
         <div class="modal-body text-center">
           <p class="mb-3">Please verify you're not a bot to access the portfolio.</p>
-          <div class="g-recaptcha" id="g-recaptcha"></div>
+          <div class="g-recaptcha" data-sitekey="6Lc18pMrAAAAAJ6HsIb4gHlL7IghlT2_YBb0z2fN"></div>
           <button class="btn btn-primary mt-3" id="verifyButton" style="display: none;">Verify and Proceed</button>
         </div>
       </div>
     </div>
   </div>
   <!-- Scripts -->
-  <script src="js/config.js"></script> <!-- 首先加載 config.js -->
+
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> <!-- 使用 CDN -->
   <script src="js/scripts.js"></script>
@@ -183,7 +183,7 @@
 
       // Render reCAPTCHA using config.js
       grecaptcha.render('g-recaptcha', {
-        'sitekey': RECAPTCHA_SITE_KEY,
+        'sitekey': data-sitekey,
         'callback': function(token) {
           if (token) {
             recaptchaModal.hide(); // 關閉模態框
