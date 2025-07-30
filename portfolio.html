@@ -181,9 +181,9 @@
 
       const portfolioContent = document.getElementById('portfolio-content');
 
-      // Render reCAPTCHA using config.js
+      // Render reCAPTCHA
       grecaptcha.render('g-recaptcha', {
-        'sitekey': data-sitekey,
+        'sitekey': '6Lc18pMrAAAAAJ6HsIb4gHlL7IghlT2_YBb0z2fN',
         'callback': function(token) {
           if (token) {
             recaptchaModal.hide(); // 關閉模態框
